@@ -58,5 +58,17 @@ describe('users', function(){
       });
     });
   });
+
+  describe('get /index', function(){
+    it('should show all users', function(done){
+      request(app)
+      .get('/index')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        done();
+      });
+    });
+  });
 });
 

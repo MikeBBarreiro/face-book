@@ -42,5 +42,15 @@ describe('User', function(){
       });
     });
   });
+
+  describe('.all', function(){
+    it('Should Find all users', function(done){
+      User.all(function(err, users){
+        expect(users).to.have.length(3);
+        done();
+      });
+    });
+  });
 });
+
 

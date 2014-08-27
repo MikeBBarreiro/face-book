@@ -1,0 +1,20 @@
+extends ../shared/template
+block content
+  h2 Face-Book
+
+
+  table.table.table-borded.table-hover
+    thead
+      th Face-Book
+      th Account
+      th Tags
+        tbody
+          each user in users
+            if (user.isVisible)
+            tr
+              td
+                .indexPhoto(style="background-image: url('#{user.photo}'); background-size: cover;")
+              td= user.email
+              td= user.tagline
+
+

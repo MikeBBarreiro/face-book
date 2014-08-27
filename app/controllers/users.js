@@ -54,3 +54,9 @@ exports.update = function(req, res){
 exports.profile = function(req, res){
   res.render('users/profile');
 };
+
+exports.index = function(req, res){
+  User.all(function(err, users){
+    res.render('users/index', {users:users});
+  });
+};
