@@ -1,0 +1,46 @@
+extends ../shared/template
+block content
+  h1= client.email
+  // a.editPro.buzz-out(href='/profile/edit') Edit Profile
+  .photo(style="background-image: url('#{client.photo}'); background-size: cover;")
+  
+  table.table.table-striped
+    thead
+      td Tags
+      td Phone #
+      td Facebook
+      td Twitter
+      td Visible
+        tbody
+          tr
+            td= client.tagline
+            td= client.phone
+            td= client.facebook
+            td= client.twitter
+            td= client.isVisible
+  
+  //mesage
+  .row
+    .col-xs-4
+
+      form(role='form', method='post', action='/message/#{client._id}')
+        //input(type='hidden', name='_method', value='put')
+        .radio
+          label
+            input(type="radio", name='mtype', value='text' checked=true)
+            span Text
+        .radio
+          label
+            input(type="radio", name='mtype', value='email' checked=false)
+            span Email
+        .radio
+          label
+            input(type="radio", name='mtype', value='internal' checked=false)
+            span Internal
+        .form-group
+          label(for='Message') Message
+          input.form-control#message(name='message')
+
+
+        button.btn.btn-primary(type='submit') Send Message
+    .col-xs-8

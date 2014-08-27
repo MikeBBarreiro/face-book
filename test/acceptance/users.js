@@ -70,5 +70,43 @@ describe('users', function(){
       });
     });
   });
+
+  describe('get /users', function(){
+    it('Should render you to the Users Page', function(done){
+      request(app)
+      .get('/users/bob@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        done();
+      });
+    });
+
+
+    it('Should not show you the Users Page', function(done){
+      request(app)
+      .get('/users/bob@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/000000000000000000000002', function(){
+    it('should send user a message', function(done){
+      request(app)
+      .post('/message/000000000000000000000002')
+      .set('cookie', cookie)
+      .send('_method=put&mtype=text&message=Hello%21')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/sue@aol.com');
+        done();
+      });
+    });
+  });
 });
 

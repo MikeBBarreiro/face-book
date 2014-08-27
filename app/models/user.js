@@ -18,6 +18,11 @@ User.findById = function(id, cb){
   });
 };
 
+User.findOne = function(filter, cb){
+  User.collection.findOne(filter, cb);
+
+};
+
 User.register = function(o, cb){
   User.collection.findOne({email:o.email}, function(err, user){
     if(user){return cb();}
@@ -56,5 +61,25 @@ User.find = function(filter, cb){
   User.collection.find(filter).toArray(cb);
 };
 
+User.prototype.send = function(receiver, obj, cb){
+  switch(obj.mtype){
+    case 'text':
+      sendText(receiver.phone, obj.message, cb);
+      break;
+    case 'email':
+      break;
+    case'internal':
+  }
+};
+
 module.exports = User;
 
+function sendText(to, body, cb){
+// Twilio Credentials
+  var accountSid = 'AC0a827f121a01ab657a205a83ccf6d304',
+       authToken = process.env.TWILIO,
+//require the Twilio module and create a REST client
+          client = require('twilio')(accountSid, authToken);
+
+  client.messages.create({to:to, from: '+19855904651', body:body}, cb);
+}
