@@ -56,7 +56,7 @@ exports.profile = function(req, res){
 };
 
 exports.index = function(req, res){
-  User.all(function(err, users){
+  User.find({isVisible:true}, function(err, users){
     res.render('users/index', {users:users});
   });
 };

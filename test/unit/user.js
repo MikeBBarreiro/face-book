@@ -43,10 +43,10 @@ describe('User', function(){
     });
   });
 
-  describe('.all', function(){
-    it('Should Find all users', function(done){
-      User.all(function(err, users){
-        expect(users).to.have.length(3);
+  describe('.find', function(){
+    it('Should Find all users who are public', function(done){
+      User.find({isVisible:true}, function(err, users){
+        expect(users).to.have.length(2);
         done();
       });
     });
