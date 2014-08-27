@@ -1,0 +1,28 @@
+extends ../shared/template
+block content
+  h1= user.email
+  a.editPro.buzz-out(href='/profile/edit') Edit Profile
+  .photo(style="background-image: url('#{user.photo}'); background-size: cover;")
+  
+  table.table.table-striped
+    thead
+      td Tags
+      td Phone #
+      td Facebook
+      td Twitter
+        tbody
+          tr
+            td= user.tagline
+            td= user.phone
+            td= user.facebook
+            td= user.twitter
+
+  //h3 Tags
+    .tagline=user.tagline
+
+  //h3 Phone #
+    .phone=user.phone
+
+ // h3 Facebook
+    .facebook=user.facebook*/
+

@@ -6,7 +6,7 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Template
+      a.navbar-brand.outline-inward(href='/') Face-Book
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
@@ -17,6 +17,6 @@
                 input(type='hidden', name='_method', value='delete')
                 button.btn.btn-danger= user.email
         else
-          li: a(href='/register') Register
-          li: a(href='/login') Login
+          li: a.outline-inward(href='/register') Register
+          li: a.outline-inward(href='/login') Login
 
