@@ -66,7 +66,7 @@ exports.client = function(req, res){
     if(client){
       res.render('users/client', {client:client});
     }else{
-      res.rendirect('/users');
+      res.redirect('/index');
     }
   });
 };

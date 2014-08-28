@@ -18,12 +18,12 @@ block content
             td= client.facebook
             td= client.twitter
             td= client.isVisible
-  
+
   //mesage
   .row
     .col-xs-4
 
-      form(role='form', method='post', action='/message/#{client._id}')
+      form.messageForm(role='form', method='post', action='/message/#{client._id}')
         //input(type='hidden', name='_method', value='put')
         .radio
           label

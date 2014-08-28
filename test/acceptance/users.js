@@ -85,11 +85,11 @@ describe('users', function(){
 
     it('Should not show you the Users Page', function(done){
       request(app)
-      .get('/users/bob@aol.com')
+      .get('/users/wonk@aol.com')
       .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(302);
-        expect(res.headers.location).to.equal('/users');
+        expect(res.headers.location).to.equal('/index');
         done();
       });
     });
@@ -100,7 +100,7 @@ describe('users', function(){
       request(app)
       .post('/message/000000000000000000000002')
       .set('cookie', cookie)
-      .send('_method=put&mtype=text&message=Hello%21')
+      .send('mtype=text&message=Hello%21')
       .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/sue@aol.com');

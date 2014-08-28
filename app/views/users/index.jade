@@ -13,7 +13,8 @@ block content
             if (user.isVisible)
             tr
               td
-                .indexPhoto(style="background-image: url('#{user.photo}'); background-size: cover;")
+                if user.photo
+                  .indexPhoto(style="background-image: url('#{user.photo}'); background-size: cover;")
               td: a(href='/users/#{user.email}')= user.email
               td= user.tagline
 

@@ -68,18 +68,24 @@ User.prototype.send = function(receiver, obj, cb){
       break;
     case 'email':
       break;
-    case'internal':
+    case 'internal':
   }
 };
 
 module.exports = User;
 
 function sendText(to, body, cb){
+  if(!to){return cb();}
+
 // Twilio Credentials
-  var accountSid = 'AC0a827f121a01ab657a205a83ccf6d304',
-       authToken = process.env.TWILIO,
+//var accountSid = 'AC0a827f121a01ab657a205a83ccf6d304',
+  var accountSid = process.env.TWSID,
+      authToken  = process.env.TWTOK,
+            from = process.env.FROM,
+//authToken = process.env.TWILIO,
 //require the Twilio module and create a REST client
           client = require('twilio')(accountSid, authToken);
 
-  client.messages.create({to:to, from: '+19855904651', body:body}, cb);
+//'+19855904651'
+  client.messages.create({to:to, from:from, body:body}, cb);
 }
